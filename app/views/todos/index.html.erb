@@ -1,0 +1,13 @@
+<h1> This is what you HAVE TO DOO!!!!!!</h1>
+
+<ol>
+<% @todos.each do |todo|%>
+    <li>
+        <%= link_to todo.activity, todo %>
+        
+    </li>
+<%end%>
+
+</ol>
+
+<%= button_to "New Task", new_todo_path, method: :get %>

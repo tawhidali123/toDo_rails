@@ -1,0 +1,8 @@
+<h1>What do you want to edit?</h1>
+
+<%= form_for @todo do |f|%>
+    <%= f.label  :activity %>
+    <%= f.text_field :activity%>
+
+    <%= f.submit%>
+<%end%>
