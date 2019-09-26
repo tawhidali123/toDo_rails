@@ -14,8 +14,12 @@ class TodosController < ApplicationController
 
     def create
         # POST
-        # Todo.create()
-        Todo.create(params.require(:todo).permit(:activity))
+        todo = Todo.create(permission)
+        # if todo.errors.
+        #     redirect_to todos_path
+        # else
+        #     redirect_to new_todo_path
+        # end
         redirect_to todos_path
     end
 
@@ -25,19 +29,25 @@ class TodosController < ApplicationController
 
     def update
         # POST
-        Todo.update(params.require(:todo).permit(:activity))
+        Todo.find(params[:id]).update(permission)
         redirect_to todo_path
     end
 
     def destroy
         # POST
+        todo = Todo.find(params[:id])
+        Todo.delete(todo)
+        redirect_to todos_path
     end
 
-    # private
 
-    # def create_params
 
-    # end
+
+    private
+
+    def permission
+        params.require(:todo).permit(:activity, :priority)
+    end
 
 
 end
