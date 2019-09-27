@@ -3,6 +3,9 @@
 <h3><%= @todo.activity %></h3>
 <br>
 <h4>Intrest Level: <%= @todo.priority %></h4>
+<br>
+<h5>complete by: <%= @todo.time %></h5>
+
 <%= button_to "Edit this", edit_todo_path, method: :get %>
 <br>
 <%= button_to "<< See Full List ", todos_path, method: :get %>

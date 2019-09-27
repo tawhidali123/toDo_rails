@@ -5,7 +5,7 @@ class TodosController < ApplicationController
     end
 
     def show
-        @todo = Todo.find(params[:id])
+        @todo = find_me
     end
 
     def new
@@ -20,16 +20,17 @@ class TodosController < ApplicationController
         # else
         #     redirect_to new_todo_path
         # end
+        byebug
         redirect_to todos_path
     end
 
     def edit
-        @todo = Todo.find(params[:id])
+        @todo = find_me
     end
 
     def update
         # POST
-        Todo.find(params[:id]).update(permission)
+        find_me.update(permission)
         redirect_to todo_path
     end
 
@@ -46,7 +47,11 @@ class TodosController < ApplicationController
     private
 
     def permission
-        params.require(:todo).permit(:activity, :priority)
+        params.require(:todo).permit(:activity, :priority, :time)
+    end
+
+    def find_me
+        Todo.find(params[:id])
     end
 
 
